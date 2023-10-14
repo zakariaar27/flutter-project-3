@@ -7,7 +7,7 @@ class Localdata {
     return await box.read(userdata) ?? false;
   }
 
-  serThemeData(bool value) async {
+  setThemeData(bool value) async {
     await box.write(userdata, value);
     return true;
   }

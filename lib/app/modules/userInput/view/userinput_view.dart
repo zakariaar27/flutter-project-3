@@ -14,15 +14,34 @@ class UserInputView extends GetView<UserInputController> {
       appBar: KAppBar(
         title: ("Change Theme"),
       ),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("Several dara from user input",style: TextStyle(color: Colors.purple,fontSize: 30),),
-          ],
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(40.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextFormField(
+                decoration: InputDecoration(
+                  label:  Text('User Name'),
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.purple),
+                  ),
+                   focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.purple),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.purple),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.red),
+                  ),
+                ),
+              ),
+              ElevatedButton(onPressed: () {}, child: Text('login'))
+            ],
+          ),
         ),
       ),
     );
   }
 }
-

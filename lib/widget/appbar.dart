@@ -18,8 +18,8 @@ class KAppBar extends StatelessWidget implements PreferredSizeWidget {
               controller.changeTheme();
             },
             icon: controller.theme.value
-                ? Icon(Icons.dark_mode)
-                : Icon(Icons.light_mode)))
+                ? Icon(Icons.light_mode)
+                : Icon(Icons.dark_mode)))
       ],
     );
   }

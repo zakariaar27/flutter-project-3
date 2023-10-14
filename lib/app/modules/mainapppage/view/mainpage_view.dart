@@ -11,10 +11,10 @@ class MainAppPageView extends GetView<MainAppPageController> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(MainAppPageController());
+     Get.put(MainAppPageController());
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      themeMode: controller.theme.value ? ThemeMode.light : ThemeMode.dark,
+      
       theme: lightThemes ,
       darkTheme: darkThemes,
       initialRoute: AppPages.initialpages,
