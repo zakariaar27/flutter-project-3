@@ -11,6 +11,7 @@ class KAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final controller = Get.put(MainAppPageController());
     return AppBar(
+      automaticallyImplyLeading: false,
       title: Text(title),
       actions: [
         Obx(() => IconButton(
