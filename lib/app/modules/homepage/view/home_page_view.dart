@@ -64,16 +64,17 @@ class HomePageView extends GetView<HomePageController> {
                         children: [
                           KAppImage(
                               imageUrl:
-                                  "https://images.unsplash.com/photo-1527960669566-f882ba85a4c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXdlc29tZSUyMHBpY3xlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80"),
+                                  controller.userImage.value,
+                                  ),
                           Column(
                             children: [
                               KText(
-                                textType: 'Mian Name',
+                                textType: controller.user.value,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 30,
                               ),
                               KText(
-                                textType: 'User Name',
+                                textType: controller.userNameMe.value,
                                 fontSize: 20,
                               ),
                             ],
@@ -85,7 +86,7 @@ class HomePageView extends GetView<HomePageController> {
                       ),
                       KText(
                           textType:
-                              "This is Mohammad Zakaria. I am Working App Development with Flutter. I have completed my two project."),
+                             controller.userBio.value,),
                       SizedBox(
                         height: 20,
                       ),
@@ -122,4 +123,3 @@ class HomePageView extends GetView<HomePageController> {
     );
   }
 }
-

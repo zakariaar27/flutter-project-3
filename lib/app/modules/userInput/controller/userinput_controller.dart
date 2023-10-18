@@ -17,7 +17,7 @@ class UserInputController extends GetxController {
     }else if (textEditingController.text.contains(" ")){
 Get.snackbar("Input Field", "Invalid Input Field",duration: Duration(seconds: 5),);
     }else{
-      Get.to(() => HomePageView());
+      Get.to(() => HomePageView(), arguments: textEditingController.text);
     }
   }
 }
