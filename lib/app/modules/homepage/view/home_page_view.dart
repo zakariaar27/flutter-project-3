@@ -6,7 +6,7 @@ import 'package:project_3/app/modules/homepage/controller/home_page_controller.d
 import 'package:project_3/widget/K_appbar.dart';
 import 'package:project_3/widget/k_Text.dart';
 import 'package:project_3/widget/k_app_img.dart';
-import 'package:project_3/widget/k_grid_view.dart';
+
 
 class HomePageView extends GetView<HomePageController> {
   const HomePageView({super.key});
@@ -63,9 +63,8 @@ class HomePageView extends GetView<HomePageController> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           KAppImage(
-                              imageUrl:
-                                  controller.userImage.value,
-                                  ),
+                            imageUrl: controller.userImage.value,
+                          ),
                           Column(
                             children: [
                               KText(
@@ -85,8 +84,8 @@ class HomePageView extends GetView<HomePageController> {
                         height: 20,
                       ),
                       KText(
-                          textType:
-                             controller.userBio.value,),
+                        textType: controller.userBio.value,
+                      ),
                       SizedBox(
                         height: 20,
                       ),
@@ -100,21 +99,147 @@ class HomePageView extends GetView<HomePageController> {
                           SizedBox(
                             width: 40,
                           ),
-                          Text('Sort^'),
+                          Text('Repo List'),
                           SizedBox(
                             width: 40,
                           ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(Icons.grid_view),
+                          InkWell(
+                            child: IconButton(
+                              onPressed: () {
+                                controller.changeListView();
+                              },
+                              icon: controller.isListView.value
+                                  ? Icon(Icons.list)
+                                  : Icon(Icons.grid_view),
+                            ),
                           ),
                         ],
                       ),
                       SizedBox(
                         height: 20,
                       ),
+
+                      Obx(() => controller.repoList.isEmpty
+                          ? const SizedBox()
+                          : controller.isListView.value
+                              ? SizedBox(
+                                  height: 120 * 20,
+                                  child: ListView.separated(
+                                    itemCount: 20,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    separatorBuilder: (context, index) {
+                                      return SizedBox(
+                                        height: 10,
+                                      );
+                                    },
+                                    itemBuilder: (context, index) {
+                                      return InkWell(
+                                        onTap: () {},
+                                        child: Container(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          height: 100,
+                                          color: Colors.indigo,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  KText(
+                                                    textType: controller
+                                                        .repoList[index].name,
+                                                    fontWeight: FontWeight.bold,fontSize: 20,
+                                                  ),
+                                                  SizedBox(height: 10,),
+                                                  KText(
+                                                      textType: controller
+                                                          .repoList[index]
+                                                          .createdAt),
+                                                  KText(
+                                                      textType: controller
+                                                          .repoList[index]
+                                                          .updatedAt),
+                                                  KText(
+                                                      textType: controller
+                                                          .repoList[index]
+                                                          .pushedAt),
+                                                ],
+                                              ),
+                                              ElevatedButton(
+                                                onPressed: () {},
+                                                child: KText(
+                                                  textType: 'Public',
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                )
+                              : SizedBox(
+                                  height: 100 * 10,
+                                  child: GridView.builder(
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                            crossAxisSpacing: 20,
+                                            mainAxisSpacing: 20,
+                                            crossAxisCount: 2),
+                                    itemCount: 20,
+                                    itemBuilder: (context, index) {
+                                      return GestureDetector(
+                                        onTap: () {},
+                                        child: Container(
+                                          height: 100,
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          color: Colors.orange,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              KText(
+                                                textType: controller
+                                                    .repoList[index].name,
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 20,
+                                              ),
+                                              SizedBox(height: 20,),
+                                              KText(
+                                                  textType: controller
+                                                      .repoList[index]
+                                                      .createdAt),
+                                              KText(
+                                                  textType: controller
+                                                      .repoList[index]
+                                                      .updatedAt),
+                                              KText(
+                                                  textType: controller
+                                                      .repoList[index]
+                                                      .pushedAt),
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              ElevatedButton(
+                                                onPressed: () {},
+                                                child: KText(
+                                                  textType: 'Public',
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  )))
+
                       // KListView()
-                      KGridView()
+                      // KGridView()
                     ],
                   ),
                 ),

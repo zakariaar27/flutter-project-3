@@ -12,6 +12,9 @@ final double fontSize;
   Widget build(BuildContext context) {
     return Text(
       textType,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 50,
+      softWrap: true,
       style: TextStyle(
         fontWeight: fontWeight,
         fontSize: fontSize,
