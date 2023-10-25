@@ -93,7 +93,9 @@ class HomePageView extends GetView<HomePageController> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              controller.showSortDai();
+                            },
                             child: Text('Sort^'),
                           ),
                           SizedBox(
@@ -137,9 +139,11 @@ class HomePageView extends GetView<HomePageController> {
                                       return InkWell(
                                         onTap: () {},
                                         child: Container(
+                                          
                                           padding: EdgeInsets.symmetric(
                                               horizontal: 20),
                                           height: 100,
+                                         
                                           color: Colors.indigo,
                                           child: Row(
                                             mainAxisAlignment:

@@ -1,8 +1,11 @@
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/state_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:project_3/app/modules/homepage/model/repo_model.dart';
+
+import '../../mainapppage/controller/mainpage_controller.dart';
 
 class HomePageController extends GetxController {
   var arData;
@@ -16,7 +19,7 @@ class HomePageController extends GetxController {
   }
 
   RxBool isLoading = false.obs;
-  RxBool isListView =false.obs;
+  RxBool isListView = false.obs;
   RxList<RepoModel> repoList = <RepoModel>[].obs;
 
   RxString userNameMe = "".obs;
@@ -24,9 +27,8 @@ class HomePageController extends GetxController {
   RxString userImage = "".obs;
   RxString userBio = "".obs;
 
-
-  changeListView(){
-    isListView.value=!isListView.value;
+  changeListView() {
+    isListView.value = !isListView.value;
   }
 
   callUserData(String userName) async {
@@ -64,7 +66,72 @@ class HomePageController extends GetxController {
       }
       repoList.refresh();
       isLoading.value = false;
-   ;
+    }
   }
-}
+  nameAtoZ(){
+    repoList.sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()),);
+    repoList.refresh();
+    Get.back();
+  }
+  nameZtoA(){
+    repoList.sort((a, b) => b.name.toLowerCase().compareTo(a.name.toLowerCase()),);
+    repoList.refresh();
+    Get.back();
+  }
+
+  showSortDai() {
+ final colorController=Get.put(MainAppPageController());
+    Get.bottomSheet(
+        Container(
+          padding: EdgeInsets.only(top: 30,left: 20),
+          height: 300,
+          width: double.infinity,
+          color: colorController.theme.value? Colors.grey: Colors.purple,
+          child: ListView(
+            children: [
+              InkWell(
+                onTap: () {
+                   nameAtoZ();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text('Name a-z'),
+                ),
+              ),
+              InkWell(
+                onTap: () {
+                  nameZtoA();
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text('Name z-a'),
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text('Date order by create repo'),
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text('Date order by push repo'),
+                ),
+              ),
+              InkWell(
+                onTap: () {},
+                child: Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Text('Date order by update repo'),
+                ),
+              ),
+            ],
+          ),
+        ),
+        enterBottomSheetDuration: Duration(seconds: 1),
+        exitBottomSheetDuration: Duration(seconds: 1),
+      );}
 }
